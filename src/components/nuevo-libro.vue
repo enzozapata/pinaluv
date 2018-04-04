@@ -37,7 +37,30 @@
             icon="ti-face-smile">
                 <div class="row">
                    <div class="col-md-6">
-                       <label>Piel:</label><select class="form-control" v-on:change="generarPJ" v-model="protagonista.apariencia.color_piel"><option value="1">1</option><option value="2">2</option></select>
+                       <label>Piel:</label><select class="form-control" v-on:change="generarPJ" v-model="protagonista.apariencia.color_piel">
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="3">4</option>
+                        </select>
+                        <label>Ojos:</label><select class="form-control" v-on:change="generarPJ" v-model="protagonista.apariencia.ojos">
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                        </select>
+                       <label>Pelo:</label><select class="form-control" v-on:change="generarPJ" v-model="protagonista.apariencia.pelo">
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                        </select>
+                       <label>Color pelo:</label><select class="form-control" v-on:change="generarPJ" v-model="protagonista.apariencia.color_pelo">
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                        </select>
+                       
                     </div>
                     <div class="col-md-6">
                         <img id="previsualizador"/>
@@ -46,7 +69,8 @@
             </tab-content>
             <tab-content title="Dedicatoria"
                 icon="ti-pencil-alt">
-
+                <label>Escribe tu dedicatoria: </label>
+                <textarea class="form-control">Hola {{protagonista.nombre}}...</textarea>
             </tab-content>
             <tab-content title="Datos de registro"
                 icon="ti-notepad">
@@ -90,6 +114,7 @@ export default {
                 idioma:'',
                 apariencia:{
                     pelo:'1',
+                    ojos:'1',
                     color_pelo:'1',
                     color_piel:'1'
                 }
@@ -105,7 +130,7 @@ export default {
             return require('../assets/capas/feliz-cumpleanos/Pagina 1/Girl/fondo.png')
         },
         ojos_color(){
-            return require('../assets/capas/feliz-cumpleanos/Pagina 1/Girl/Piel/Ojos1.png')
+            return require('../assets/capas/feliz-cumpleanos/Pagina 1/Girl/Piel/Ojos'+this.protagonista.apariencia.ojos+'.png')
         },
         piel_contorno(){
             return require('../assets/capas/feliz-cumpleanos/Pagina 1/Girl/Piel/PielContorno.png')
@@ -113,16 +138,16 @@ export default {
         piel_color(){
             return require('../assets/capas/feliz-cumpleanos/Pagina 1/Girl/Piel/Piel'+this.protagonista.apariencia.color_piel+'.png')
         },
-        pelo_contorno(){
-            return require('../assets/capas/feliz-cumpleanos/Pagina 1/Girl/Pelo 3/PeloContorno.png')
-        },
         pelo_color(){
-            return require('../assets/capas/feliz-cumpleanos/Pagina 1/Girl/Pelo 3/Pelo1.png')
+            return require('../assets/capas/feliz-cumpleanos/Pagina 1/Girl/Pelo '+this.protagonista.apariencia.pelo+'/Pelo'+this.protagonista.apariencia.color_pelo+'.png')
+        },
+        pelo_contorno(){
+            return require('../assets/capas/feliz-cumpleanos/Pagina 1/Girl/Pelo '+this.protagonista.apariencia.pelo+'/PeloContorno.png')
         }
     },
 	methods: {
         onComplete: function(){
-            alert('Yay. Done!');
+            alert('Listorti!');
    },
    onAuthOK: function(resp){
        alert("Autorizado para el pago. Detalles en JSON: "+JSON.stringify(resp));
